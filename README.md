@@ -40,4 +40,6 @@ $ npm i @nestjs/config
 $ npm i cross-env
 # For create documentation
 $ npm i @nestjs/swagger swagger-ui-express
+# For jwt token and crypt password https://jwt.io/
+$ npm i @nestjs/jwt bcryptjs
 ```
