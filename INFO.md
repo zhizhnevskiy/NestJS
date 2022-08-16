@@ -15,7 +15,9 @@
 - nest generate module users
 - nest generate controller users
 - nest generate service users
-## Add Config
+## Add for Config
 - npm i @nestjs/config
 ## Add ENV generator for package.json
 - npm i cross-env
+## Add for create documentation
+- npm i @nestjs/swagger swagger-ui-express
