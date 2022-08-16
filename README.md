@@ -1,5 +1,8 @@
 ## NestJS Project
-
+## Documentation
+```bash
+http://localhost:5000/api/docs
+```
 ## Installation:
 ```bash
 # install Nest
