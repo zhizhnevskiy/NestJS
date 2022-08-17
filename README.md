@@ -42,4 +42,6 @@ $ npm i cross-env
 $ npm i @nestjs/swagger swagger-ui-express
 # For jwt token and crypt password https://jwt.io/
 $ npm i @nestjs/jwt bcryptjs
+#For validation and transform data
+$ npm i class-validator class-transformer
 ```
