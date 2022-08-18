@@ -42,6 +42,10 @@ $ npm i cross-env
 $ npm i @nestjs/swagger swagger-ui-express
 # For jwt token and crypt password https://jwt.io/
 $ npm i @nestjs/jwt bcryptjs
-#For validation and transform data
+# For validation and transform data
 $ npm i class-validator class-transformer
+# For create random name for file
+$ npm i uuid
+# For show folder with img "static" in browser
+$ npm i --save @nestjs/serve-static
 ```

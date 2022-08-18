@@ -5,6 +5,7 @@ interface PostCreatingAttrs {
     title: string;
     content: string;
     image: string;
+    userId: number;
 }
 
 @Table({tableName: 'posts'})
