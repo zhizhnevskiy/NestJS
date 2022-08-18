@@ -13,6 +13,8 @@ $ nest new project-name
 $ npm run start
 # watch mode
 $ npm run start:dev
+
+# create .production.env and .development.env with help of .example.env
 ```
 
 ## Databases:
