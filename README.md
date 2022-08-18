@@ -20,11 +20,20 @@ $ npm run start:dev
 ## Databases:
 ```bash
 # mysql
-$ npm install --save @nestjs/sequelize sequelize sequelize-typescript mysql2
+$ npm install --save mysql2
 # postgres
 $ npm install --save pg pg-hstore 
-# sequelize
+# for using sequelize
+$ npm install --save @nestjs/sequelize sequelize sequelize-cli sequelize-typescript
 $ npm install --save-dev @types/sequelize
+# create migrations
+$ npx sequelize-cli migration:generate --name create-roles
+# run migrations
+$ npx sequelize-cli db:migrate
+# create seed
+$ npx sequelize-cli seed:generate --name demo-user
+# run seed
+$ npx sequelize-cli db:seed:all
 ```
 
 ## Command for Nest CLI:
