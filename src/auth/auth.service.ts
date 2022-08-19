@@ -18,7 +18,19 @@ export class AuthService {
   ) {}
 
   async login(userDto: CreateUserDto) {
-    const user = await this.validateUser(userDto);
+    const user = await this.usersService.getUserByEmail(userDto.email);
+    if (!user) {
+      throw new UnauthorizedException({ message: 'Email not found' });
+    }
+
+    const passwordEquals = await bcrypt.compare(
+        userDto.password,
+        user.password,
+    );
+    if (!passwordEquals) {
+      throw new UnauthorizedException({ message: 'Password not correct' });
+    }
+
     return this.generateToken(user);
   }
 
@@ -51,22 +63,5 @@ export class AuthService {
     return {
       token: this.jwsService.sign(payload),
     };
-  }
-
-  private async validateUser(userDto: CreateUserDto) {
-    const user = await this.usersService.getUserByEmail(userDto.email);
-    if (!user) {
-      throw new UnauthorizedException({ message: 'Email not found' });
-    }
-
-    const passwordEquals = await bcrypt.compare(
-      userDto.password,
-      user.password,
-    );
-    if (!passwordEquals) {
-      throw new UnauthorizedException({ message: 'Password not correct' });
-    }
-
-    return user;
   }
 }
