@@ -16,9 +16,13 @@ export class UsersService {
   async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.create(dto);
     const role = await this.roleService.getRoleByValue('ADMIN');
-    await user.$set('roles', [role.id]);
-    user.roles = [role];
-    return user;
+    if (user && role) {
+      await user.$set('roles', [role.id]);
+      user.roles = [role];
+      return user;
+    } else {
+      throw new HttpException('User or Role not Found', HttpStatus.BAD_REQUEST);
+    }
   }
 
   async getAllUsers() {
