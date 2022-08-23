@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Post } from './posts.model';
@@ -20,7 +20,7 @@ export class PostsService {
       });
       return post;
     } catch (e) {
-      throw new HttpException('Change data', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('Change data');
     }
   }
 }

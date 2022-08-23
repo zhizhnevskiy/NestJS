@@ -15,7 +15,7 @@ interface PostCreatingAttrs {
   userId: number;
 }
 
-@Table({ tableName: 'posts' })
+@Table({ tableName: 'posts', createdAt: false, updatedAt: false })
 export class Post extends Model<Post, PostCreatingAttrs> {
   @Column({
     type: DataType.INTEGER,
@@ -31,7 +31,7 @@ export class Post extends Model<Post, PostCreatingAttrs> {
   @Column({ type: DataType.STRING, allowNull: true })
   content: string;
 
-  @Column({ type: DataType.STRING })
+  @Column({ type: DataType.STRING, allowNull: true })
   image: string;
 
   @ForeignKey(() => User)

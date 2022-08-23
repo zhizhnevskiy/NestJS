@@ -18,7 +18,7 @@ import * as path from 'path';
   providers: [],
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      envFilePath: `.env`,
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',

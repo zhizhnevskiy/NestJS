@@ -1,6 +1,5 @@
 import {
-  HttpException,
-  HttpStatus,
+  BadRequestException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -38,10 +37,7 @@ export class AuthService {
     const candidate = await this.usersService.getUserByEmail(userDto.email);
 
     if (candidate) {
-      throw new HttpException(
-        'This email already existing',
-        HttpStatus.BAD_REQUEST,
-      );
+      throw new BadRequestException('This email already existing');
     }
 
     const hashPassword = await bcrypt.hash(userDto.password, 5);

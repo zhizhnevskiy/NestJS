@@ -16,7 +16,7 @@ interface UserCreatingAttrs {
   password: string;
 }
 
-@Table({ tableName: 'users' })
+@Table({ tableName: 'users', createdAt: false, updatedAt: false })
 export class User extends Model<User, UserCreatingAttrs> {
   @ApiProperty({ example: 1, description: 'Unique id' })
   @Column({

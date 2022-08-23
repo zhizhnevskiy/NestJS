@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as uuid from 'uuid';
@@ -15,10 +15,7 @@ export class FilesService {
       fs.writeFileSync(path.join(filePath, fileName), file.buffer);
       return fileName;
     } catch (e) {
-      throw new HttpException(
-        'Error when write file',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw new InternalServerErrorException('Error when write file');
     }
   }
 }

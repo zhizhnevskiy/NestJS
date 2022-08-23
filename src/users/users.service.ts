@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './users.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -21,35 +21,35 @@ export class UsersService {
       user.roles = [role];
       return user;
     } else {
-      throw new HttpException('User or Role not Found', HttpStatus.BAD_REQUEST);
+      throw new NotFoundException('User or Role not Found');
     }
   }
 
-  async getAllUsers() {
-    const user = await this.userRepository.findAll({ include: { all: true } });
+  getAllUsers() {
+    const user = this.userRepository.findAll({ include: { all: true } });
     if (!user) {
-      throw new HttpException('Users not found', HttpStatus.NOT_FOUND);
+      throw new NotFoundException('Users not found');
     }
     return user;
   }
 
-  async getUserByEmail(email: string) {
-    const user = await this.userRepository.findOne({
+  getUserByEmail(email: string) {
+    const user = this.userRepository.findOne({
       where: { email },
       include: { all: true },
     });
     return user;
   }
 
-  async addRole(dto: AddRoleDto) {
-    const user = await this.userRepository.findByPk(dto.userId);
-    const role = await this.roleService.getRoleByValue(dto.value);
-    if (role && user) {
-      await user.$add('role', role.id);
-      await user.save();
-      return user;
-    }
-    throw new HttpException('User or role not found', HttpStatus.NOT_FOUND);
+  async addRole(dto: AddRoleDto): Promise<User> {
+    const [user, role] = await Promise.all([
+      this.userRepository.findByPk(dto.userId),
+      this.roleService.getRoleByValue(dto.value),
+    ]);
+    if (!role || !user) throw new NotFoundException('User or role not found');
+
+    await user.$add('role', role.id);
+    return user;
   }
 
   async ban(dto: BanUserDto) {
@@ -60,6 +60,6 @@ export class UsersService {
       await user.save();
       return user;
     }
-    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    throw new NotFoundException('Users not found');
   }
 }

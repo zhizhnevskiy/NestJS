@@ -1,23 +1,34 @@
-## NestJS Project
-## Documentation
+# NestJS Project
+### Documentation:
 ```bash
 http://localhost:5000/api/docs
 ```
-## Installation:
+### Project Installation:
 ```bash
-# install Nest
-$ npm i -g @nestjs/cli
-# Create new project:
-$ nest new project-name
-# production mode
-$ npm run start
-# watch mode
+# Install all npm packages
+$ npm install
+# Start all migrations
+$ npm run migration:all
+# Start all seeds
+$ npm run seed:all
+# Start watch mode
 $ npm run start:dev
-
+# Start production
+$ npm run start
 # create .production.env and .development.env with help of .example.env
 ```
 
-## Databases:
+# General information about nest:
+
+### Install NestJS and create project:
+```bash
+# Install Nest
+$ npm i -g @nestjs/cli
+# Create new project:
+$ nest new project-name
+```
+
+### Databases:
 ```bash
 # mysql
 $ npm install --save mysql2
@@ -36,14 +47,14 @@ $ npx sequelize-cli seed:generate --name demo-user
 $ npx sequelize-cli db:seed:all
 ```
 
-## Command for Nest CLI:
+### Command for Nest CLI:
 ```bash
-$ nest generate module users
-$ nest generate controller users
-$ nest generate service users
+$ npx nest generate module users
+$ npx nest generate controller users
+$ npx nest generate service users
 ```
 
-## Helpers:
+### Helpers:
 ```bash
 # For Config
 $ npm i @nestjs/config
@@ -59,4 +70,6 @@ $ npm i class-validator class-transformer
 $ npm i uuid
 # For show folder with img "static" in browser
 $ npm i --save @nestjs/serve-static
+# For parse .env
+$ npm install dotenv --save
 ```
